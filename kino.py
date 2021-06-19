@@ -73,4 +73,20 @@ class kino():
                 print(sys.exc_info()[1])
                 continue
         
-        return links
+        # the paginator
+        select_paginator = soup.find('main').find('div', class_='paginator')        
+        paginator = []
+        if select_paginator is not None:
+            for a_ in select_paginator.find_all('a'):
+                try:                
+                    r_ = []
+                    r_.append(a_.get('href'))
+                    r_.append(a_.text.strip())
+                    r_.append('active' if 'paginator__page-number_is-active' in a_.get('class') else '')                
+                    paginator.append(r_)
+                except Exception as e:
+                    print(sys.exc_info()[1])
+                    continue
+            # self.p(paginator)
+
+        return {'films':links, 'paginator':paginator}
