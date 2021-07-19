@@ -9,7 +9,7 @@ def main():
 	# ----- 20 best films
 	url_ = 'https://www.kinopoisk.ru/lists/navigator/?quick_filters=high_rated&limit=20&tab=best'
 	flm = kino(url=url_, filename='kino.json')
-	html_ = flm.get_html()	
+	html_ = flm.get_html()
 	links_ = flm.get_all_links(html=html_)
 	# the table
 	x = PrettyTable()

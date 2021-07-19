@@ -19,3 +19,7 @@ parsing kinopoisk.ru pages from /afisha/city/{city_id}
 where {city_id} is id city list
 
 ![afisha](https://github.com/glasscat82/kino/blob/master/img/afisha.png "afisha")
+
+## Program launch /film_id.py
+parsing kinopoisk.ru pages from /film/{film_id}/
+where {film_id} is id film

@@ -128,3 +128,32 @@ class kino():
                 print(sys.exc_info()[1])
                 continue
         return sked
+
+    def get_film(self, html):
+        if html is False:
+            return False
+        soup = BeautifulSoup(html, 'lxml')
+        selection_list = soup.find_all('div', {'class':'styles_root__3BHiJ'})
+        flm = False
+        for in_, r_ in enumerate(selection_list, 1):
+            if in_ > 1:
+                continue            
+            try:
+                film_body = r_.find('div', {'class':'styles_root__2jZrC'}, recursive=False)
+                h1_ = film_body.find('h1').text.strip()
+                h3_ = film_body.find('div', {'data-test-id':'encyclopedic-table'})
+                descrip_ = []
+                for d_ in h3_.findChildren("div" , recursive=False):
+                    ds_ = [desc_.text.strip() for desc_ in d_.findChildren("div" , recursive=False)]
+                    descrip_.append(ds_) 
+
+                # ul.styles_list__I97eu
+                flm = {'h1':h1_, 'description':descrip_}
+                # self.p(h1_)
+                # self.p(descrip_)
+
+            except Exception as e:
+                print(sys.exc_info()[1])
+                continue
+        
+        return flm
